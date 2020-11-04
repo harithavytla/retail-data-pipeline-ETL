@@ -32,7 +32,8 @@ Create a network between the source and target
 
 Execute below commands to create a container, enter the container, create Source DB, retail_user and excute create_tables script to create all the required tables
 
-```docker run --name mysql_retail -d -e MYSQL_ROOT_PASSWORD='' here -v retail_db:/retail_db --network data-pipeline-nw -p 3306:3306 mysql 
+```
+docker run --name mysql_retail -d -e MYSQL_ROOT_PASSWORD='' here -v retail_db:/retail_db --network data-pipeline-nw -p 3306:3306 mysql 
 docker exec -it mysql_retail mysql -u root -p
 CREATE DATABASE retail;
 CREATE USER retail_user IDENTIFIED BY '';
@@ -45,7 +46,8 @@ SOURCE /retail_db/create_db.sql;
 
 Execute below commands to create a container, enter the container, create Target DB, retail_user and grant all privileges to retail_user
 
-```sudo docker run --name pg_retail_dw  -e POSTGRES_PASSWORD='' -d -v /retail_db:/retail_dw -p 5432:5432 postgres
+```
+sudo docker run --name pg_retail_dw  -e POSTGRES_PASSWORD='' -d -v /retail_db:/retail_dw -p 5432:5432 postgres
 docker exec -it pg_retail_dw psql -U postgres -W
 CREATE DATABASE retail_db;
 CREATE USER retail_user WITH ENCRYPTED PASSWORD '';
